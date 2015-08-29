@@ -1,15 +1,51 @@
 package App::Randf;
 use strict;
 use warnings;
-use Carp qw/croak/;
+use Getopt::Long qw/GetOptionsFromArray/;
 
 our $VERSION = '0.01';
 
-sub new {
-    my $class = shift;
-    my $args  = shift || +{};
+sub run {
+    my $self = shift;
+    my @argv = @_;
 
-    bless $args, $class;
+    my $config = +{};
+    _merge_opt($config, @argv);
+
+    _main($config);
+}
+
+sub _main {
+    my $config = shift;
+
+    while (my $stdin = <STDIN>) {
+        print $stdin if !$config->{per} || $config->{per}*100 > rand(10000);
+    }
+}
+
+sub _merge_opt {
+    my ($config, @argv) = @_;
+
+    GetOptionsFromArray(
+        \@argv,
+        'p|per=i' => \$config->{per},
+        'h|help'  => sub {
+            _show_usage(1);
+        },
+        'v|version' => sub {
+            print "$0 $VERSION\n";
+            exit 1;
+        },
+    ) or _show_usage(2);
+
+    $config->{per} = shift @argv if scalar @argv > 0 && !$config->{per};
+}
+
+sub _show_usage {
+    my $exitval = shift;
+
+    require Pod::Usage;
+    Pod::Usage::pod2usage(-exitval => $exitval);
 }
 
 1;
@@ -18,17 +54,26 @@ __END__
 
 =head1 NAME
 
-App::Randf - one line description
+App::Randf - random filter for STDIN
 
 
 =head1 SYNOPSIS
 
     use App::Randf;
 
+    App::Randf->run(@ARGV);
+
 
 =head1 DESCRIPTION
 
-App::Randf is
+App::Randf provides L<randf> command for filtering high flow log.
+
+
+=head1 METHOD
+
+=head2 run
+
+execute randf
 
 
 =head1 REPOSITORY
@@ -51,7 +96,7 @@ Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
-L<Other::Module>
+L<randf>
 
 
 =head1 LICENSE

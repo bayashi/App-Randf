@@ -13,13 +13,16 @@ my $builder = Module::Build->new(
     },
     build_requires      => {
         'Test::More' => 0.88,
+        'Capture::Tiny' => 0,
     },
     requires => {
         'perl' => '5.008001',
         'strict' => 0,
         'warnings' => 0,
-        'Carp' => 0,
+        'Getopt::Long' => 2.42,
+        'Pod::Usage' => 0,
     },
+    script_files        => [ 'script/randf' ],
     add_to_cleanup      => [ 'App-Randf-*' ],
     meta_merge     => {
       resources => {

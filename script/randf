@@ -1,0 +1,32 @@
+#!perl
+use strict;
+use warnings;
+use App::Randf;
+
+App::Randf->run(@ARGV);
+
+__END__
+
+=head1 NAME
+
+randf - random filter for STDIN
+
+=head1 SYNOPSIS
+
+    $ tail -f high_flow_log | randf 10
+
+
+=head1 AUTHOR
+
+Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
+
+=head1 SEE ALSO
+
+L<App::Randf>
+
+=head1 LICENSE
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=cut
