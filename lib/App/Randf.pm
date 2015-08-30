@@ -80,7 +80,7 @@ execute randf
 
 =begin html
 
-<a href="http://travis-ci.org/bayashi/App-Randf"><img src="https://secure.travis-ci.org/bayashi/App-Randf.png"/></a> <a href="https://coveralls.io/r/bayashi/App-Randf"><img src="https://coveralls.io/repos/bayashi/App-Randf/badge.png?branch=master"/></a>
+<a href="http://travis-ci.org/bayashi/App-Randf"><img src="https://secure.travis-ci.org/bayashi/App-Randf.png?_t=1440937201"/></a> <a href="https://coveralls.io/r/bayashi/App-Randf"><img src="https://coveralls.io/repos/bayashi/App-Randf/badge.png?_t=1440937201&branch=master"/></a>
 
 =end html
 
