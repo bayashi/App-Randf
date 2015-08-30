@@ -16,22 +16,29 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Capture::Tiny" : "0",
-            "Test::More" : "0.88"
+            "Module::Build::Pluggable::CPANfile" : "0.04"
          }
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.40",
+            "Module::Build::Pluggable" : "0",
+            "Module::Build::Pluggable::CPANfile" : "0.04"
          }
       },
       "runtime" : {
          "requires" : {
             "Getopt::Long" : "2.42",
             "Pod::Usage" : "0",
-            "perl" : "5.008001",
+            "perl" : "5.008005",
             "strict" : "0",
             "warnings" : "0"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Capture::Tiny" : "0",
+            "Test::More" : "0.88"
          }
       }
    },

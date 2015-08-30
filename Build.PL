@@ -1,27 +1,13 @@
 use strict;
 use warnings;
-use Module::Build;
+use Module::Build::Pluggable qw/CPANfile/;
 
-my $builder = Module::Build->new(
+my $builder = Module::Build::Pluggable->new(
     name                => 'App-Randf',
     module_name         => 'App::Randf',
     license             => 'perl',
     dist_author         => 'Dai Okabayashi <bayashi@cpan.org>',
     dist_version_from   => 'lib/App/Randf.pm',
-    configure_requires  => {
-        'Module::Build' => 0.38,
-    },
-    build_requires      => {
-        'Test::More' => 0.88,
-        'Capture::Tiny' => 0,
-    },
-    requires => {
-        'perl' => '5.008001',
-        'strict' => 0,
-        'warnings' => 0,
-        'Getopt::Long' => 2.42,
-        'Pod::Usage' => 0,
-    },
     script_files        => [ 'script/randf' ],
     add_to_cleanup      => [ 'App-Randf-*' ],
     meta_merge     => {
@@ -34,8 +20,9 @@ my $builder = Module::Build->new(
         },
       }
     },
-    recursive_test_files => 1,
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? ['t/', 'xt/'] : ['t/'],
+    recursive_test_files => 1,
+    create_license => 1,
 );
 
 $builder->create_build_script();
