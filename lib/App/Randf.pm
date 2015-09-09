@@ -4,7 +4,7 @@ use warnings;
 use Config::CmdRC '.randfrc';
 use Getopt::Long qw/GetOptionsFromArray/;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub run {
     my $self = shift;
