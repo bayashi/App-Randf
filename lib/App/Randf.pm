@@ -1,6 +1,7 @@
 package App::Randf;
 use strict;
 use warnings;
+use Config::CmdRC '.randfrc';
 use Getopt::Long qw/GetOptionsFromArray/;
 
 our $VERSION = '0.01';
@@ -9,7 +10,7 @@ sub run {
     my $self = shift;
     my @argv = @_;
 
-    my $config = +{};
+    my $config = RC();
     _merge_opt($config, @argv);
 
     _main($config);
@@ -38,7 +39,7 @@ sub _merge_opt {
         },
     ) or _show_usage(2);
 
-    $config->{per} = shift @argv if scalar @argv > 0 && !$config->{per};
+    $config->{per} = shift @argv if scalar @argv > 0;
 }
 
 sub _show_usage {
